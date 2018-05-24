@@ -20,6 +20,33 @@
  *
  */
 
+ /*
+
+  * ======================================================================================
+  * === Marlin 3D Printer Firmware configuration for the DSP Informatik AG 3D printer ====
+  * ======================================================================================
+
+  * The following configurations file defines the required parameters for the DSP Informatik AG 3D printer.
+  * The applied values have been calculated at the time of development, and as a result, must very likely be
+  * re-calibrated after a lack of maintenance or any modifications.
+
+  * To calibrate the printer, please refer to the README of this repository, which briefly documents
+  * printer usage, firmware installation, calibration process and the changes that have been applied
+  * to the original Marlin Firmware specifically for this printer.
+
+  * == THIS PROJECT IS PROTECTED BY THE GNU General Public License V3: https://www.gnu.org/licenses/gpl-3.0.en.html ==
+
+  * ANY MODIFIED VERSIONS OF THIS FIRMWARE ARE REQUIRED TO BE PUBLISHIED ALONG SIDE OF ITS SOURCE CODE!
+  * IN OTHER WORDS, EVERYONE THAT USES A MODIFIED VERSION OF THIS FIRMWARE, IS REQUIRED TO HAVE FULL ACCESS
+  * TO ITS CODE. NOT DOING SO, IS A VIOLATION OF THE GNU General Public License V3 AND WOULD BE DAMAGING
+  * AND COUNTERPRODUCTIVE TO THE LEGACY OF THIS PRINTER!!
+
+  * We've been through this experience once already... seriously share and document your code!
+
+  * For further understanding and questions, please contact Patrick Pedersen <ctx.xda@gmail.com> !
+
+  */
+
 /**
  * Configuration.h
  *
@@ -74,10 +101,10 @@
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
-#define SHOW_BOOTSCREEN
-#define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
-#define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
+#define STRING_CONFIG_H_AUTHOR "(DSP Informatik AG, default config)" // Who made the changes.
+// #define SHOW_BOOTSCREEN
+// #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
+// #define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
 
 //
 // *** VENDORS PLEASE READ *****************************************************
@@ -111,7 +138,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 250000
+#define BAUDRATE 115200
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -137,7 +164,7 @@
 #define EXTRUDERS 1
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
-#define DEFAULT_NOMINAL_FILAMENT_DIA 3.0
+#define DEFAULT_NOMINAL_FILAMENT_DIA 2.9
 
 // For Cyclops or any "multi-extruder" that shares a single nozzle.
 //#define SINGLENOZZLE
@@ -291,7 +318,7 @@
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 1
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
 #define DUMMY_THERMISTOR_998_VALUE 25
@@ -320,7 +347,7 @@
 #define HEATER_2_MINTEMP 5
 #define HEATER_3_MINTEMP 5
 #define HEATER_4_MINTEMP 5
-#define BED_MINTEMP 5
+#define BED_MINTEMP 0 // Always triggers mintemp on our printer!
 
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
@@ -470,10 +497,10 @@
 // Specify here all the endstop connectors that are connected to any endstop or probe.
 // Almost all printers will be using one per axis. Probes will use one or more of the
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
-#define USE_XMIN_PLUG
+//#define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
-//#define USE_XMAX_PLUG
+#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 
@@ -529,7 +556,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 81, 80, 2666, 400 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -748,9 +775,9 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
+#define INVERT_X_DIR true
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR true
 
 // Enable this option for Toshiba stepper drivers
 //#define CONFIG_STEPPERS_TOSHIBA
@@ -773,15 +800,22 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR 1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
 
 // @section machine
 
+/* DSP Informatik AG Printer
+
+ * Z: FL42STH47 42mm (Keep at least 2 mm free!)
+ * X, Y: 190mm x 190mm heatbed
+
+ */
+
 // The size of the print bed
-#define X_BED_SIZE 200
-#define Y_BED_SIZE 200
+#define X_BED_SIZE 195
+#define Y_BED_SIZE 195
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -789,7 +823,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
+#define Z_MAX_POS 90
 
 /**
  * Software Endstops

@@ -113,7 +113,6 @@
 #define E1_ENABLE_PIN      30
 #define E1_CS_PIN          44
 
-
 #if ENABLED(HAVE_TMC2208)
   /**
    * TMC2208 stepper drivers
@@ -168,8 +167,8 @@
 // Temperature Sensors
 //
 #define TEMP_0_PIN         13   // Analog Input
-#define TEMP_1_PIN         15   // Analog Input
-#define TEMP_BED_PIN       14   // Analog Input
+#define TEMP_1_PIN         14   // Analog Input
+#define TEMP_BED_PIN       15   // Analog Input
 
 // SPI for Max6675 or Max31855 Thermocouple
 #if DISABLED(SDSUPPORT)
