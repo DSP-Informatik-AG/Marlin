@@ -2984,7 +2984,7 @@ static void homeaxis(const AxisEnum axis) {
     #if ENABLED(DEBUG_LEVELING_FEATURE)
       if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("Home 2 Slow:");
     #endif
-    do_homing_move(axis, 2 * bump, get_homing_bump_feedrate(axis));
+    do_homing_move(axis, 2 * bump + (axis == Z_AXIS ? Z_HOMING_OFFSET : 0), get_homing_bump_feedrate(axis));
   }
 
   /**

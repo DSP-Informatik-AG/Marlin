@@ -804,6 +804,14 @@
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
 
+// [CUSTOM MODIFICATION!]
+// Z distance (mm) from initial homing point: +Up | -Down
+#define Z_HOMING_OFFSET 2.2
+
+#ifndef Z_HOMING_OFFSET
+  #define Z_HOMING_OFFSET 0
+#endif
+
 // @section machine
 
 /* DSP Informatik AG Printer
@@ -914,7 +922,7 @@
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of PROGMEM!
  */
-//#define DEBUG_LEVELING_FEATURE
+#define DEBUG_LEVELING_FEATURE
 
 #if ENABLED(MESH_BED_LEVELING) || ENABLED(AUTO_BED_LEVELING_BILINEAR) || ENABLED(AUTO_BED_LEVELING_UBL)
   // Gradually reduce leveling correction until a set height is reached,
