@@ -2,7 +2,7 @@
 
 The following repository is a modification of the original [Marlin 3D Printer Firmware](http://www.marlinfw.org/) configured to run on the DSP Informatik AG 3D printer
 
-![img](img)
+![gif](WATCHME.gif)
 
 # Marlin 3D Printer Firmware
 
