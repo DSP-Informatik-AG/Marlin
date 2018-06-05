@@ -806,7 +806,7 @@
 
 // [CUSTOM MODIFICATION!]
 // Z distance (mm) from initial homing point: +Up | -Down
-#define Z_HOMING_OFFSET 2.8
+#define Z_HOMING_OFFSET 2.4
 
 #ifndef Z_HOMING_OFFSET
   #define Z_HOMING_OFFSET 0
